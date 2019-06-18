@@ -4,9 +4,17 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import com.example.kienz.brandkuapp.R;
+
+import java.util.ArrayList;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 
 /**
@@ -26,6 +34,8 @@ public class homeFrag extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    @BindView(R.id.recycerPost)
+    RecyclerView recView;
 
     private OnFragmentInteractionListener mListener;
 
@@ -64,7 +74,18 @@ public class homeFrag extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        View v = inflater.inflate(R.layout.fragment_home, container, false);
+        ButterKnife.bind(this,v);
+        ArrayList<Post> mPost = new ArrayList<>();
+
+        Post post1 = new Post();
+        post1.setJudul("hab");
+        post1.setGambar("https://github.com/square/picasso/blob/master/website/static/sample.png");
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+        recView.setLayoutManager(layoutManager);
+        PostAdapter adapter = new PostAdapter(getContext(),mPost);
+        recView.setAdapter(adapter);
+        return v;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -90,6 +111,7 @@ public class homeFrag extends Fragment {
         super.onDetach();
         mListener = null;
     }
+
 
     /**
      * This interface must be implemented by activities that contain this

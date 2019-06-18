@@ -15,10 +15,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class PostViewholder extends RecyclerView.ViewHolder {
-//    @BindView(R.id.imageView_explore_item_image)
-//    ImageView mEventImageView;
-//    @BindView(R.id.textView_explore_item_text)
-//    TextView mEventNameTextView;
+    @BindView(R.id.imageView_explore_item_image)
+    ImageView mEventImageView;
+    @BindView(R.id.textView_explore_item_text)
+    TextView mEventNameTextView;
     private Context mContext;
     private ArrayList<Post> mPosts = new ArrayList<>();
 
@@ -40,8 +40,8 @@ public class PostViewholder extends RecyclerView.ViewHolder {
     }
 
     public void bindEvent(Post event) {
-//        Picasso.get().load(event.getGambar()).into(mEventImageView);
-//        mEventNameTextView.setText(event.getJudul());
+        Picasso.get().load(event.getGambar()).into(mEventImageView);
+        mEventNameTextView.setText(event.getJudul());
     }
 }
 
